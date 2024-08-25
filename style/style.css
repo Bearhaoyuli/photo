@@ -278,3 +278,44 @@ h2.text-center.mb-5 {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* Custom CSS for Portfolio Section */
+#portfolio .card {
+    border: none;
+    overflow: hidden;
+    background-color: transparent;
+}
+
+#portfolio .card-img-container {
+    height: 300px; /* Increase the height to make the images bigger */
+    overflow: hidden;
+    position: relative;
+}
+
+#portfolio .card-img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 8px;
+    transition: transform 0.3s ease-in-out;
+}
+
+#portfolio .card-body {
+    padding: 10px 0;
+}
+
+#portfolio .card-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+}
+
+#portfolio .card-link:hover .card-img-container img {
+    transform: scale(1.05); /* Slight zoom effect on hover */
+}
+
+#portfolio .card-link {
+    text-decoration: none;
+    color: inherit;
+}

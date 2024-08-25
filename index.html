@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pompear Shot Photography</title>
+    <link rel="stylesheet" href = "style/style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
+
+</head>
+<body>
+    <div class="hero" id = "home">
+        <img src="./img/WechatIMG3042.jpg" class="active" alt="Slide 1">
+        <img src="./img/WechatIMG3041.jpg" alt="Slide 2">
+        <img src="./img/WechatIMG3042.jpg" alt="Slide 3">
+        <img src="./img/WechatIMG3041.jpg" alt="Slide 4">
+        <img src="./img/WechatIMG3042.jpg" alt="Slide 5">
+        <img src="./img/WechatIMG3041.jpg" alt="Slide 6">
+        <!-- Text Overlays for each image -->
+        <div class="text-overlay active">The real, the mundane, yet such precious moments</div>
+        <div class="text-overlay">Capturing the beauty of everyday life</div>
+        <div class="text-overlay">Moments that tell a story</div>
+        <div class="text-overlay">Memories frozen in time</div>
+        <div class="text-overlay">Every click has a tale</div>
+        <div class="text-overlay">Your moments, our lens</div>
+
+        <div class="nav">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#portfolio">Portfolio</a>
+            <a href="#">Package</a>
+            <a href="#">Contact</a>
+
+        </div>
+        <!-- <div class="pagination">
+            <span id="prev">❮</span>
+            <span id="current-slide">01</span> / <span id="total-slides">06</span>
+            <span id="next">❯</span>
+        </div> -->
+
+        <div class="pagination d-flex justify-content-between align-items-center">
+            <span id="prev" class="bi bi-chevron-left"></span>
+            <span id="next" class="bi bi-chevron-right"></span>
+        </div>
+        
+    </div>
+
+    <!-- About Section -->
+    <div class="content" id = "about">
+        <h2>About Pompear Shot Photography</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <p>Follow us on social media and check out our latest work!</p>
+    </div>
+
+<!-- Portfolio Section -->
+<div class="content" id="portfolio">
+    <div class="container">
+        <h2 class="text-center mb-5">Package</h2>
+        <div class="row">
+            <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                <a href="pricing.html#newborn" class="card-link">
+                    <div class="card mb-4 lazy-load" data-src="./img/WechatIMG3042.jpg" data-title="New Born" data-description="A brief description of the photo sample.">
+                        <!-- Placeholder content -->
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                <a href="pricing.html#portrait" class="card-link">
+                    <div class="card mb-4 lazy-load" data-src="./img/WechatIMG3042.jpg" data-title="Portrait" data-description="A brief description of the photo sample.">
+                        <!-- Placeholder content -->
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                <a href="pricing.html#couple" class="card-link">
+                    <div class="card mb-4 lazy-load" data-src="./img/WechatIMG3042.jpg" data-title="Couple" data-description="A brief description of the photo sample.">
+                        <!-- Placeholder content -->
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 col-12">
+                <a href="pricing.html#family" class="card-link">
+                    <div class="card mb-4 lazy-load" data-src="./img/WechatIMG3042.jpg" data-title="Family" data-description="A brief description of the photo sample.">
+                        <!-- Placeholder content -->
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="text-center mt-4">
+            <a href="https://pomepearphoto.pic-time.com/client" class="btn btn-custom" target="_blank">View Full Portfolio</a>
+        </div>
+    </div>
+</div>
+
+<!-- Contact Section -->
+<div class="content" id="contact">
+    <div class="container">
+        <h2 class="text-center mb-5">Contact Us</h2>
+
+        <!-- WeChat Contact Info -->
+        <div class="row justify-content-center mb-5">
+            <div class="col-md-8 text-center">
+                <img src="https://cdn.jsdelivr.net/npm/bootstrap-icons/icons/wechat.svg" alt="WeChat" style="width: 50px; filter: grayscale(100%);">
+                <p class="mt-2" style="font-size: 1.2rem;">WeChat ID: <strong>bearhaoyu</strong></p>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <form action="https://formspree.io/f/xzzpyynd" method="POST" class="contact-form">
+                    <div class="form-group">
+                        <label for="name">Your Name:</label>
+                        <input type="text" name="name" id="name" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address:</label>
+                        <input type="email" name="email" id="email" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number:</label>
+                        <input type="text" name="phone" id="phone" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="session_type">What Type of Session Are You Looking For?</label>
+                        <input type="text" name="session_type" id="session_type" class="form-control" placeholder="e.g., Lifestyle Family, Newborn, etc." required>
+                    </div>
+                    <div class="form-group">
+                        <label for="shoot_dates">Preferred Shoot Dates:</label>
+                        <input type="text" name="shoot_dates" id="shoot_dates" class="form-control" placeholder="List the dates that work for you">
+                    </div>
+                    <div class="form-group">
+                        <label for="location">Desired Shoot Location:</label>
+                        <input type="text" name="location" id="location" class="form-control" placeholder="City, Studio, etc.">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Your Message:</label>
+                        <textarea name="message" id="message" class="form-control" rows="5" required></textarea>
+                    </div>
+                    <div class="text-center mt-4">
+                        <button type="submit" class="btn btn-custom">Send Message</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+   
+    
+    <script src="./javascript/function.js"></script>
+
+</body>
+</html>

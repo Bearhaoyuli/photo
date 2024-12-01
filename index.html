@@ -12,28 +12,46 @@
 
 </head>
 <body>
+
     <div class="hero" id = "home">
-        <img src="./img/WechatIMG3042.jpg" class="active" alt="Slide 1">
-        <img src="./img/WechatIMG3041.jpg" alt="Slide 2">
-        <img src="./img/WechatIMG3042.jpg" alt="Slide 3">
-        <img src="./img/WechatIMG3041.jpg" alt="Slide 4">
-        <img src="./img/WechatIMG3042.jpg" alt="Slide 5">
-        <img src="./img/WechatIMG3041.jpg" alt="Slide 6">
+        <div class="nav hero-nav">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#portfolio">Package</a>
+            <a href="https://pomepearphoto.pic-time.com/client" target="_blank" rel="noopener noreferrer">Portfolio</a>
+            <a href="#contact">Contact</a>
+        </div>
+
+        <img src="./img/1.jpg" class="active" alt="Slide 1">
+        <img src="./img/2.jpg" alt="Slide 2">
+        <img src="./img/3.jpg" alt="Slide 3">
+        <img src="./img/4.jpg" alt="Slide 4">
+        <img src="./img/5.jpg" alt="Slide 5">
+        <img src="./img/6.jpg" alt="Slide 6">
+        <img src="./img/7.jpg" alt="Slide 7">
+        <img src="./img/8.jpg" alt="Slide 8">
+
+     
+        
         <!-- Text Overlays for each image -->
         <div class="text-overlay active">The real, the mundane, yet such precious moments</div>
+        <div class="scroll-arrow" id="scrollArrow">
+            <i class="bi bi-chevron-down"></i>
+            <i class="bi bi-chevron-down"></i>
+        </div>
+        
+        
+        
         <div class="text-overlay">Capturing the beauty of everyday life</div>
         <div class="text-overlay">Moments that tell a story</div>
         <div class="text-overlay">Memories frozen in time</div>
         <div class="text-overlay">Every click has a tale</div>
         <div class="text-overlay">Your moments, our lens</div>
 
-        <div class="nav">
-            <a href="#home">Home</a>
-            <a href="#about">About</a>
-            <a href="#portfolio">Package</a>
-            <a href="#contact">Contact</a>
+      
+        
 
-        </div>
+
         <!-- <div class="pagination">
             <span id="prev">❮</span>
             <span id="current-slide">01</span> / <span id="total-slides">06</span>
@@ -47,8 +65,19 @@
         
     </div>
 
+
+
     <!-- About Section -->
     <div class="content" id = "about">
+
+        <div class="nav global-nav">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#portfolio">Package</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#contact">Contact</a>
+        </div>
+
         <h2>About Pompear Shot Photography</h2>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
         <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
@@ -100,7 +129,6 @@
                 <a href="pricing.html#family" class="card-link">
                     <div class="card mb-4 lazy-load" data-src="./img/WechatIMG3042.jpg" data-title="Family">
                         <div class="card-img-container">
-                            <!-- Image will be loaded via lazy loading script -->
                         </div>
                         <div class="card-body text-center">
                             <h5 class="card-title">Family</h5>
@@ -171,7 +199,10 @@
     </div>
 </div>
 
-    
+<div class="back-to-top" id="backToTop">
+    <i class="bi bi-arrow-up"></i>
+</div>
+
    
     
     <script src="./javascript/function.js"></script>

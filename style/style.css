@@ -46,23 +46,73 @@ body, html {
 
 
 .nav {
+    font-family: 'Georgia', serif; /* Matches the page's elegant aesthetic */
+    font-size: 1rem;
+    text-transform: uppercase; /* Consistent with a professional look */
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Evenly space out links */
+    padding: 10px 0;
+}
+
+/* Hero Navigation (specific to hero section) */
+.hero-nav {
     position: absolute;
     top: 20px;
     right: 20px;
-    display: flex;
-    gap: 15px;
+    color: white;
+    z-index: 10;
+    background: none; /* Transparent for hero section */
 }
 
-.nav a {
+.hero-nav a {
     color: white;
     text-decoration: none;
-    font-size: 1rem;
-    transition: color 0.3s;
+    padding: 5px 10px;
+    transition: all 0.3s;
+    border: 2px solid transparent;
+    border-radius: 4px;
 }
 
-.nav a:hover {
-    color: #ddd;
+.hero-nav a:hover {
+    background-color: rgba(255, 255, 255, 0.2); /* Subtle hover effect */
+    border-color: white;
 }
+
+/* Global Navigation (for other sections) */
+.global-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(140, 123, 107, 0.9); /* Semi-transparent matching the theme */
+    color: white;
+    z-index: 100; /* Ensure it stays above all other content */
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+}
+
+.global-nav.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.global-nav a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    transition: all 0.3s;
+    font-weight: bold;
+}
+
+.global-nav a:hover {
+    background-color: #6d5d4e; /* Darker shade for hover */
+    color: white;
+    text-decoration: none;
+}
+
 
 .pagination {
     position: absolute;
@@ -319,3 +369,67 @@ h2.text-center.mb-5 {
     text-decoration: none;
     color: inherit;
 }
+
+
+.scroll-arrow {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: -5px; /* Reduce gap to overlap the arrows slightly */
+    cursor: pointer;
+    animation: bounce 2s infinite;
+    z-index: 10; /* Ensures it appears above other elements */
+}
+
+.scroll-arrow i {
+    font-size: 1.5rem; /* Adjust size of the arrows */
+    color: white;
+    transition: color 0.3s;
+    line-height: 1; /* Ensures arrows are tightly packed */
+}
+
+.scroll-arrow:hover i {
+    color: #ddd; /* Change arrow color on hover */
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translate(-50%, 0);
+    }
+    50% {
+        transform: translate(-50%, 10px);
+    }
+}
+.back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background-color: #8c7b6b;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+    z-index: 1000; /* Ensure it's above other elements */
+}
+
+.back-to-top:hover {
+    background-color: #6d5d4e;
+}
+
+.back-to-top.show {
+    opacity: 1;
+    visibility: visible;
+}
+

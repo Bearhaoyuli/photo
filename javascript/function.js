@@ -3,28 +3,13 @@ document.addEventListener('DOMContentLoaded', function () {
     const images = document.querySelectorAll('.hero img');
     const texts = document.querySelectorAll('.hero .text-overlay');
     const totalSlides = images.length;
-    const currentSlideElement = document.getElementById('current-slide');
-    const totalSlidesElement = document.getElementById('total-slides');
     let currentIndex = 0;
-    let startX = 0;
-    let endX = 0;
-
-    if (totalSlidesElement) {
-        totalSlidesElement.textContent = totalSlides.toString().padStart(2, '0');
-    }
 
     function showSlide(index) {
         images.forEach((img, i) => {
-            img.classList.remove('active');
-            texts[i].classList.remove('active');
-            if (i === index) {
-                img.classList.add('active');
-                texts[i].classList.add('active');
-            }
+            img.classList.toggle('active', i === index);
+            texts[i].classList.toggle('active', i === index);
         });
-        if (currentSlideElement) {
-            currentSlideElement.textContent = (index + 1).toString().padStart(2, '0');
-        }
     }
 
     function nextSlide() {
@@ -32,74 +17,96 @@ document.addEventListener('DOMContentLoaded', function () {
         showSlide(currentIndex);
     }
 
-    // Autoplay the slides every 4 seconds
-    setInterval(nextSlide, 4000);
-
-    document.getElementById('prev').addEventListener('click', () => {
-        currentIndex = (currentIndex > 0) ? currentIndex - 1 : totalSlides - 1;
-        showSlide(currentIndex);
-    });
-
-    document.getElementById('next').addEventListener('click', () => {
-        currentIndex = (currentIndex < totalSlides - 1) ? currentIndex + 1 : 0;
-        showSlide(currentIndex);
-    });
-
-    // Swipe detection
-    function handleTouchStart(event) {
-        startX = event.touches[0].clientX;
+    // Attach event listener to the Next button
+    const nextButton = document.getElementById('next');
+    if (nextButton) {
+        nextButton.addEventListener('click', nextSlide);
     }
 
-    function handleTouchEnd(event) {
-        endX = event.changedTouches[0].clientX;
-        handleSwipe();
+    // Optional: Previous button functionality
+    const prevButton = document.getElementById('prev');
+    if (prevButton) {
+        prevButton.addEventListener('click', () => {
+            currentIndex = (currentIndex - 1 + totalSlides) % totalSlides; // Decrement and loop back to last slide
+            showSlide(currentIndex);
+        });
     }
+    
 
-    function handleSwipe() {
-        const diffX = startX - endX;
+    setInterval(nextSlide, 5000);
 
-        if (Math.abs(diffX) > 50) { // Only trigger if swipe distance is significant
-            if (diffX > 0) {
-                // Swipe left
-                nextSlide();
-            } else {
-                // Swipe right
-                currentIndex = (currentIndex > 0) ? currentIndex - 1 : totalSlides - 1;
-                showSlide(currentIndex);
+
+
+    const scrollArrow = document.getElementById('scrollArrow');
+    const targetSection = document.querySelector('#about'); // Section to scroll to
+
+    if (scrollArrow && targetSection) {
+        scrollArrow.addEventListener('click', () => {
+            targetSection.scrollIntoView({ behavior: 'smooth' });
+        });
+    }
+    
+
+    // Navigation link handling
+    document.querySelectorAll('.nav a').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            const href = this.getAttribute('href');
+
+            if (href.startsWith('#')) {
+                e.preventDefault();
+                const targetElement = document.querySelector(href);
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                }
+            } else if (href.startsWith('http')) {
+                // External links are handled natively
+                return;
             }
+        });
+    });
+
+    // Global navigation visibility handling
+    const globalNav = document.querySelector('.global-nav');
+    const heroHeight = document.querySelector('.hero').offsetHeight;
+
+    window.addEventListener('scroll', () => {
+        if (window.scrollY >= heroHeight - 50) { // Show global nav after hero
+            globalNav.classList.add('show');
+        } else {
+            globalNav.classList.remove('show');
         }
-    }
+    });
 
-    // Add touch event listeners
-    document.querySelector('.hero').addEventListener('touchstart', handleTouchStart, false);
-    document.querySelector('.hero').addEventListener('touchend', handleTouchEnd, false);
+    // "Back to Top" button
+    const backToTopButton = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > window.innerHeight) {
+            backToTopButton.classList.add('show');
+        } else {
+            backToTopButton.classList.remove('show');
+        }
+    });
 
+    backToTopButton.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
 
-});
-
-
-document.addEventListener('DOMContentLoaded', function () {
     // Lazy loading
     const lazyLoadElements = document.querySelectorAll('.lazy-load');
-
-    const observer = new IntersectionObserver((entries, observer) => {
+    const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 const element = entry.target;
-
-                // Retrieve the data attributes
                 const imgSrc = element.getAttribute('data-src');
                 const title = element.getAttribute('data-title');
 
-                // Create the image element dynamically
                 const img = document.createElement('img');
                 img.src = imgSrc;
                 img.alt = title;
                 img.className = 'card-img-top';
-                img.style.opacity = 0; // Start with invisible
-                img.style.transition = 'opacity 1s ease-in-out'; // Smooth transition
+                img.style.opacity = 0;
+                img.style.transition = 'opacity 1s ease-in-out';
 
-                // Append the image to the card
                 element.innerHTML = `
                     <div class="card-body">
                         <h5 class="card-title">${title}</h5>
@@ -107,19 +114,14 @@ document.addEventListener('DOMContentLoaded', function () {
                 `;
                 element.insertBefore(img, element.firstChild);
 
-                // Trigger the fade-in effect
                 setTimeout(() => {
-                    img.style.opacity = 1; // Gradually fade in the image
+                    img.style.opacity = 1;
                 }, 100);
 
-                observer.unobserve(element); // Stop observing once the content is loaded
+                observer.unobserve(element);
             }
         });
-    }, {
-        root: null, // Use the viewport as the root
-        rootMargin: '0px', // No margin around the root
-        threshold: 0.1 // Trigger when 10% of the element is visible
-    });
+    }, { root: null, rootMargin: '0px', threshold: 0.1 });
 
     lazyLoadElements.forEach(element => {
         observer.observe(element);

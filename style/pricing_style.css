@@ -1,0 +1,143 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f8f8;
+    color: #333;
+}
+.header {
+    background-color: #D1BCA9;
+    padding: 20px;
+    text-align: center;
+}
+.header h1 {
+    font-family: 'Georgia', serif;
+    font-size: 3rem;
+    margin: 0;
+}
+.header h2 {
+    font-family: 'Georgia', serif;
+    font-style: italic;
+    color: #8c7b6b;
+    margin-top: 10px;
+}
+.pricing-section {
+    padding: 60px 20px;
+}
+.pricing-section img {
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+.pricing-section h3 {
+    font-family: 'Georgia', serif;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
+.pricing-section p {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+.pricing-section ul {
+    padding-left: 20px;
+    list-style-type: disc;
+}
+.pricing-section ul li {
+    margin-bottom: 10px;
+}
+.pricing-section .price {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #8c7b6b;
+    margin-top: 20px;
+}
+.pricing-section .book-now {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #8c7b6b;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+/* Common Navigation Styling (shared with index.html) */
+.nav {
+    font-family: 'Georgia', serif;
+    font-size: 1rem;
+    text-transform: uppercase;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 10px 0;
+    z-index: 100;
+}
+
+/* Pricing Navigation (specific to pricing.html) */
+.pricing-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(140, 123, 107, 0.9); /* Matches the global nav style */
+    color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.pricing-nav a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    transition: all 0.3s;
+    font-weight: bold;
+}
+
+.pricing-nav a:hover {
+    background-color: #6d5d4e;
+    color: white;
+    text-decoration: none;
+}
+
+/* Add space to prevent overlap with the fixed nav */
+body {
+    padding-top: 60px; /* Adjust based on the nav height */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .nav {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .pricing-nav a {
+        font-size: 0.9rem;
+    }
+}
+
+.back-to-top {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background-color: #8c7b6b;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+    z-index: 1000; /* Ensure it's above other elements */
+}
+
+.back-to-top:hover {
+    background-color: #6d5d4e;
+}
+
+.back-to-top.show {
+    opacity: 1;
+    visibility: visible;
+}

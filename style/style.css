@@ -171,6 +171,17 @@ body, html {
         right: 10px;
         font-size: 0.9rem;
     }
+
+    .global-nav {
+        background-color: transparent !important;
+    }
+    .global-nav a {
+        background-color: transparent;
+        color:#8c7b6b;
+        box-shadow: none
+         
+    }
+    
 }
 
 @media (max-width: 480px) {
@@ -195,6 +206,17 @@ body, html {
         bottom: 10px;
         right: 10px;
         font-size: 0.8rem;
+    }
+
+    .global-nav {
+        background-color: transparent !important;
+    }
+    .global-nav a{
+    
+        background-color: transparent;
+        color:#8c7b6b;
+        box-shadow: none;
+         
     }
 }
 .button-container {
@@ -298,7 +320,7 @@ h2.text-center.mb-5 {
 /* Contact Section Styling with Background Image */
 #contact {
     padding: 60px 0;
-    background-image: url('../img/WechatIMG3041.jpg'); 
+    background-image: url('../img/10.jpg'); 
     background-size: cover;
     background-position: center;
     position: relative;
@@ -339,6 +361,7 @@ h2.text-center.mb-5 {
     height: 300px; /* Increase the height to make the images bigger */
     overflow: hidden;
     position: relative;
+    overflow: hidden;
 }
 
 #portfolio .card-img-container img {
@@ -348,6 +371,7 @@ h2.text-center.mb-5 {
     object-position: center;
     border-radius: 8px;
     transition: transform 0.3s ease-in-out;
+    
 }
 
 #portfolio .card-body {
@@ -359,6 +383,7 @@ h2.text-center.mb-5 {
     font-weight: bold;
     color: #333;
     text-align: center;
+    margin-top: 10px;
 }
 
 #portfolio .card-link:hover .card-img-container img {
@@ -368,6 +393,36 @@ h2.text-center.mb-5 {
 #portfolio .card-link {
     text-decoration: none;
     color: inherit;
+}
+
+#portfolio .text-center.mb-5 {
+    margin-bottom: 0px; /* Reduce the space below the heading */
+}
+
+
+#portfolio .col-lg-3, 
+#portfolio .col-md-3, 
+#portfolio .col-sm-6, 
+#portfolio .col-12 {
+    flex: 0 1 31%; /* Ensure three cards per row */
+    margin: 0px;  /* Add space between cards */
+    max-width: 550px; /* Make the boxes larger */
+}
+
+/* Reduce margin above the "Package" heading */
+#portfolio h2 {
+    margin: 10px 0 20px 0; /* Reduce top and bottom margin */
+    text-align: center;    /* Ensure proper alignment */
+}
+
+#portfolio {
+    margin: 0;
+    padding: 0; /* Reset padding if unnecessary */
+}
+
+#portfolio .container {
+    padding-top: 10px; /* Remove excess padding at the top */
+    padding-bottom: 40px; /* Optional: Adjust bottom padding */
 }
 
 

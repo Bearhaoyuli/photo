@@ -320,7 +320,7 @@ h2.text-center.mb-5 {
 /* Contact Section Styling with Background Image */
 #contact {
     padding: 60px 0;
-    background-image: url('../img/10.jpg'); 
+    background-image: url('../img/contact.jpg'); 
     background-size: cover;
     background-position: center;
     position: relative;
@@ -486,5 +486,54 @@ h2.text-center.mb-5 {
 .back-to-top.show {
     opacity: 1;
     visibility: visible;
+}
+
+/* About section styles (two-column layout similar to provided design) */
+.about-section {
+    text-align: left;
+}
+.about-inner {
+    display: grid;
+    grid-template-columns: 1fr 520px;
+    gap: 60px;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px 20px;
+}
+.about-title {
+    font-family: 'Georgia', serif;
+    font-size: 2.8rem;
+    color: #8c7b6b;
+    margin-bottom: 20px;
+    text-align: center;
+}
+.about-text p {
+    font-size: 1.05rem;
+    line-height: 1.9;
+    color: #4a4a4a;
+    margin: 0 0 24px 0;
+    max-width: 720px;
+    text-align: left;
+}
+.about-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+    display: block;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+@media (max-width: 992px) {
+    .about-inner {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        padding: 40px 16px;
+    }
+    .about-image {
+        order: -1;
+    }
+    .about-title {
+        font-size: 2rem;
+    }
 }
 

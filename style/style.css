@@ -318,36 +318,159 @@ h2.text-center.mb-5 {
     margin-bottom: 40px;
 }
 /* Contact Section Styling with Background Image */
+/* Contact / Inquiry layout */
 #contact {
     padding: 60px 0;
-    background-image: url('../img/contact.jpg'); 
-    background-size: cover;
-    background-position: center;
-    position: relative;
-}
-
-#contact::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.006); 
-    z-index: 1;
-    pointer-events: none;
+    background-color: #ede6df !important;
+    color: #333;
 }
 
 #contact .container {
     position: relative;
-    z-index: 2;
+}
+
+#contact h2 {
+    color: #8c7b6b;
+    margin-bottom: 15px;
+}
+
+.wechat-header {
+    gap: 16px;
+    padding: 20px 28px;
+    background: white;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.wechat-icon-header {
+    width: 56px;
+    height: 56px;
+    flex-shrink: 0;
+}
+
+.wechat-text-header .wechat-label {
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    color: #8c7b6b;
+    opacity: 0.8;
+}
+
+.wechat-text-header .wechat-id {
+    font-size: 1.1rem;
+    color: #333;
+    font-weight: 600;
+}
+
+.inquiry-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 30px;
+    align-items: flex-start;
+}
+
+.inquiry-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+    display: block;
+    object-fit: cover;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+
+.inquiry-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
 .contact-form {
-    background-color: rgba(255, 255, 255, 0.8); 
-    padding: 40px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    padding: 28px;
+    border-radius: 6px;
+    border: 1px solid #e5e5e5;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+}
+
+.contact-form .form-group {
+    margin-bottom: 18px;
+}
+
+.contact-form label {
+    color: #8c7b6b;
+    font-size: 0.9rem;
+    font-weight: 500;
+    display: block;
+    margin-bottom: 6px;
+}
+
+.contact-form .form-control {
+    background: white;
+    color: #333;
+    border: 1px solid #D1BCA9;
+    border-radius: 4px;
+    padding: 10px;
+    font-size: 0.95rem;
+}
+
+.contact-form .form-control:focus {
+    border-color: #8c7b6b;
+    box-shadow: 0 0 0 3px rgba(140, 123, 107, 0.1);
+}
+
+.contact-form .form-control::placeholder {
+    color: #bbb;
+}
+
+.form-row.two-cols { 
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    gap: 16px; 
+}
+
+.form-actions { 
+    margin-top: 16px; 
+}
+
+.portfolio-bottom { 
+    text-align: center;
+    padding: 40px 20px;
+    background-color: #f4f4f4;
+}
+
+.portfolio-bottom .btn-custom { 
+    background-color: #8c7b6b;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    font-size: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.portfolio-bottom .btn-custom:hover {
+    background-color: #6d5d4e;
+}
+
+@media (min-width: 992px) {
+    .inquiry-grid { 
+        grid-template-columns: 520px 1fr; 
+        gap: 40px;
+        align-items: center;
+    }
+    .inquiry-image { 
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .inquiry-image img { 
+        max-height: 600px;
+        width: auto;
+    }
 }
 
 /* Custom CSS for Portfolio Section */

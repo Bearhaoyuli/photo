@@ -337,9 +337,9 @@ h2.text-center.mb-5 {
 .wechat-header {
     gap: 16px;
     padding: 20px 28px;
-    background: white;
+    background: transparent;
     border-radius: 6px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    box-shadow: none;
     width: fit-content;
     margin-left: auto;
     margin-right: auto;
@@ -387,11 +387,11 @@ h2.text-center.mb-5 {
 }
 
 .contact-form {
-    background-color: white;
+    background-color: transparent;
     padding: 28px;
     border-radius: 6px;
-    border: 1px solid #e5e5e5;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+    border: none;
+    box-shadow: none;
 }
 
 .contact-form .form-group {
@@ -645,12 +645,19 @@ h2.text-center.mb-5 {
     font-family: 'Poppins', sans-serif;
     font-weight: 300;
 }
+.about-image {
+    overflow: hidden;
+    border-radius: 6px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+
 .about-image img {
     width: 100%;
     height: auto;
-    border-radius: 6px;
     display: block;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+    object-fit: cover;
+    object-position: center top;
+    transform: translateY(-100px);
 }
 @media (min-width: 992px) {
     .about-inner {

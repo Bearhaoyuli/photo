@@ -507,6 +507,8 @@ h2.text-center.mb-5 {
     color: #8c7b6b;
     margin-bottom: 20px;
     text-align: left;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
 }
 .about-text p {
     font-size: 1.05rem;
@@ -515,6 +517,10 @@ h2.text-center.mb-5 {
     margin: 0 0 24px 0;
     max-width: 720px;
     text-align: left;
+}
+.about-text {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300;
 }
 .about-image img {
     width: 100%;

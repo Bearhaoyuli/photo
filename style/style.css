@@ -113,6 +113,34 @@ body, html {
     text-decoration: none;
 }
 
+/* Global nav is a flex container to position inquiry button to the right */
+.global-nav {
+    display: flex !important;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 20px;
+}
+
+.inquiry-btn {
+    margin-left: auto;
+    background-color: #8c7b6b;
+    color: white;
+    padding: 10px 24px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-family: 'Georgia', serif;
+    font-size: 1rem;
+    text-transform: uppercase;
+    font-weight: bold;
+    transition: all 0.3s;
+    white-space: nowrap;
+}
+
+.inquiry-btn:hover {
+    background-color: #6d5d4e;
+    color: white;
+    text-decoration: none;
+}
 
 .pagination {
     position: absolute;

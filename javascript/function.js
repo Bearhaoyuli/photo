@@ -126,4 +126,168 @@ document.addEventListener('DOMContentLoaded', function () {
     lazyLoadElements.forEach(element => {
         observer.observe(element);
     });
+
+    const packageCarousel = document.querySelector('.package-carousel');
+    if (packageCarousel) {
+        const packageWindow = packageCarousel.querySelector('.package-carousel-window');
+        const packageTrack = packageCarousel.querySelector('.package-carousel-track');
+        const packagePrev = packageCarousel.querySelector('.package-arrow-prev');
+        const packageNext = packageCarousel.querySelector('.package-arrow-next');
+        const originalSlides = Array.from(packageTrack.children);
+
+        if (packageWindow && packageTrack && originalSlides.length > 0) {
+            const cloneCount = originalSlides.length;
+            const prependClones = originalSlides.slice(-cloneCount).map((slide) => slide.cloneNode(true));
+            const appendClones = originalSlides.slice(0, cloneCount).map((slide) => slide.cloneNode(true));
+
+            prependClones.forEach((clone) => packageTrack.insertBefore(clone, packageTrack.firstChild));
+            appendClones.forEach((clone) => packageTrack.appendChild(clone));
+
+            const slides = () => Array.from(packageTrack.children);
+            let currentIndex = cloneCount;
+            let slideWidth = 0;
+            let gap = 0;
+            let isAnimating = false;
+            let dragStartX = 0;
+            let dragDeltaX = 0;
+            let isDragging = false;
+            let autoSlideId = null;
+
+            function measureCarousel() {
+                const currentSlides = slides();
+                if (currentSlides.length < 2) {
+                    return;
+                }
+
+                slideWidth = currentSlides[0].getBoundingClientRect().width;
+                const slideStyles = window.getComputedStyle(packageTrack);
+                gap = parseFloat(slideStyles.columnGap || slideStyles.gap || 0);
+            }
+
+            function offsetFor(index) {
+                return index * (slideWidth + gap);
+            }
+
+            function setPosition(index, animate = true) {
+                if (!slideWidth) {
+                    measureCarousel();
+                }
+
+                packageTrack.style.transition = animate ? 'transform 0.55s ease' : 'none';
+                packageTrack.style.transform = `translateX(-${offsetFor(index)}px)`;
+            }
+
+            function normalizeIndex() {
+                const lastOriginalIndex = originalSlides.length + cloneCount - 1;
+                if (currentIndex > lastOriginalIndex) {
+                    currentIndex = cloneCount;
+                    setPosition(currentIndex, false);
+                } else if (currentIndex < cloneCount) {
+                    currentIndex = originalSlides.length + cloneCount - 1;
+                    setPosition(currentIndex, false);
+                }
+            }
+
+            function goToSlide(nextIndex) {
+                if (isAnimating) {
+                    return;
+                }
+
+                isAnimating = true;
+                currentIndex = nextIndex;
+                setPosition(currentIndex, true);
+            }
+
+            function restartAutoSlide() {
+                if (autoSlideId) {
+                    clearInterval(autoSlideId);
+                }
+
+                autoSlideId = setInterval(() => {
+                    if (!isDragging) {
+                        goToSlide(currentIndex + 1);
+                    }
+                }, 3500);
+            }
+
+            function handlePointerDown(clientX) {
+                isDragging = true;
+                dragStartX = clientX;
+                dragDeltaX = 0;
+                packageCarousel.classList.add('is-dragging');
+                packageTrack.style.transition = 'none';
+            }
+
+            function handlePointerMove(clientX) {
+                if (!isDragging) {
+                    return;
+                }
+
+                dragDeltaX = clientX - dragStartX;
+                packageTrack.style.transform = `translateX(-${offsetFor(currentIndex) - dragDeltaX}px)`;
+            }
+
+            function handlePointerUp() {
+                if (!isDragging) {
+                    return;
+                }
+
+                packageCarousel.classList.remove('is-dragging');
+                isDragging = false;
+
+                if (Math.abs(dragDeltaX) > Math.max(50, slideWidth * 0.18)) {
+                    goToSlide(dragDeltaX < 0 ? currentIndex + 1 : currentIndex - 1);
+                } else {
+                    setPosition(currentIndex, true);
+                }
+
+                restartAutoSlide();
+            }
+
+            packageTrack.addEventListener('transitionend', () => {
+                isAnimating = false;
+                normalizeIndex();
+            });
+
+            packagePrev.addEventListener('click', () => {
+                goToSlide(currentIndex - 1);
+                restartAutoSlide();
+            });
+            packageNext.addEventListener('click', () => {
+                goToSlide(currentIndex + 1);
+                restartAutoSlide();
+            });
+
+            packageWindow.addEventListener('mousedown', (event) => {
+                event.preventDefault();
+                handlePointerDown(event.clientX);
+            });
+
+            window.addEventListener('mousemove', (event) => {
+                handlePointerMove(event.clientX);
+            });
+
+            window.addEventListener('mouseup', handlePointerUp);
+            packageWindow.addEventListener('mouseleave', handlePointerUp);
+
+            packageWindow.addEventListener('touchstart', (event) => {
+                handlePointerDown(event.touches[0].clientX);
+            }, { passive: true });
+
+            packageWindow.addEventListener('touchmove', (event) => {
+                handlePointerMove(event.touches[0].clientX);
+            }, { passive: true });
+
+            packageWindow.addEventListener('touchend', handlePointerUp);
+
+            window.addEventListener('resize', () => {
+                measureCarousel();
+                setPosition(currentIndex, false);
+            });
+
+            measureCarousel();
+            setPosition(currentIndex, false);
+            restartAutoSlide();
+        }
+    }
 });

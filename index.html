@@ -110,45 +110,58 @@
     <div class="content" id="portfolio">
     <div class="container">
         <h2 class="text-center mb-5">Package</h2>
-        <div class="row">
-            <div class="col-lg-3 col-md-3 col-sm-6 col-12">
-                <a href="pricing.html#portrait" class="card-link">
-                    <div class="card mb-4 lazy-load" data-src="./img/mater_baby.jpg" data-title="Maternity + baby">
-                        <div class="card-img-container">
-                            <!-- Image will be loaded via lazy loading script -->
+        <div class="package-carousel" aria-label="Package slideshow">
+            <button class="package-arrow package-arrow-prev" type="button" aria-label="Previous package">
+                <span class="bi bi-chevron-left"></span>
+            </button>
+
+            <div class="package-carousel-window">
+                <div class="package-carousel-track">
+                    <a href="pricing.html#portrait" class="package-slide card-link">
+                        <div class="package-image-frame">
+                            <img src="./img/mater_baby.jpg" alt="Maternity and baby session">
                         </div>
-                        <div class="card-body text-center">
-                            <h5 class="card-title">Maternity + baby</h5>
+                        <div class="package-caption">Maternity + baby</div>
+                    </a>
+                    <a href="pricing.html#couple" class="package-slide card-link">
+                        <div class="package-image-frame">
+                            <img src="./img/couple.jpg" alt="Couple session">
                         </div>
-                    </div>
-                </a>
+                        <div class="package-caption">Couple</div>
+                    </a>
+                    <a href="pricing.html#family" class="package-slide card-link">
+                        <div class="package-image-frame">
+                            <img src="./img/family.jpg" alt="Family session">
+                        </div>
+                        <div class="package-caption">Family</div>
+                    </a>
+                    <a href="pricing.html#portrait" class="package-slide card-link">
+                        <div class="package-image-frame">
+                            <img src="./img/mater_baby.jpg" alt="Maternity and baby session">
+                        </div>
+                        <div class="package-caption">Newborn Story</div>
+                    </a>
+                    <a href="pricing.html#couple" class="package-slide card-link">
+                        <div class="package-image-frame">
+                            <img src="./img/couple.jpg" alt="Couple session">
+                        </div>
+                        <div class="package-caption">Engagement</div>
+                    </a>
+                    <a href="pricing.html#family" class="package-slide card-link">
+                        <div class="package-image-frame">
+                            <img src="./img/family.jpg" alt="Family session">
+                        </div>
+                        <div class="package-caption">Extended Family</div>
+                    </a>
+                </div>
             </div>
-            <div class="col-lg-3 col-md-3 col-sm-6 col-12">
-                <a href="pricing.html#couple" class="card-link">
-                    <div class="card mb-4 lazy-load" data-src="./img/couple.jpg" data-title="Couple">
-                        <div class="card-img-container">
-                        </div>
-                        <div class="card-body text-center">
-                            <h5 class="card-title">Couple</h5>
-                        </div>
-                    </div>
-                </a>
-            </div>
-            <div class="col-lg-3 col-md-3 col-sm-6 col-12">
-                <a href="pricing.html#family" class="card-link">
-                    <div class="card mb-4 lazy-load" data-src="./img/family.jpg" data-title="Family">
-                        <div class="card-img-container">
-                        </div>
-                        <div class="card-body text-center">
-                            <h5 class="card-title">Family</h5>
-                        </div>
-                    </div>
-                </a>
-            </div>
+
+            <button class="package-arrow package-arrow-next" type="button" aria-label="Next package">
+                <span class="bi bi-chevron-right"></span>
+            </button>
         </div>
     </div>
     </div>
-</div>
 
 
 

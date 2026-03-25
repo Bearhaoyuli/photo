@@ -135,87 +135,139 @@ document.addEventListener('DOMContentLoaded', function () {
         const packageNext = packageCarousel.querySelector('.package-arrow-next');
         const originalSlides = Array.from(packageTrack.children);
 
-        if (packageWindow && packageTrack && originalSlides.length > 0) {
-            const cloneCount = originalSlides.length;
-            const prependClones = originalSlides.slice(-cloneCount).map((slide) => slide.cloneNode(true));
-            const appendClones = originalSlides.slice(0, cloneCount).map((slide) => slide.cloneNode(true));
+        if (packageWindow && packageTrack && originalSlides.length > 1) {
+            originalSlides.forEach((slide) => {
+                packageTrack.appendChild(slide.cloneNode(true));
+            });
 
-            prependClones.forEach((clone) => packageTrack.insertBefore(clone, packageTrack.firstChild));
-            appendClones.forEach((clone) => packageTrack.appendChild(clone));
-
-            const slides = () => Array.from(packageTrack.children);
-            let currentIndex = cloneCount;
             let slideWidth = 0;
             let gap = 0;
-            let isAnimating = false;
-            let dragStartX = 0;
-            let dragDeltaX = 0;
+            let setWidth = 0;
+            let offset = 0;
+            let lastFrameTime = 0;
+            let animationFrameId = null;
+            let nudgeFrameId = null;
             let isDragging = false;
-            let autoSlideId = null;
+            let dragStartX = 0;
+            let lastPointerX = 0;
+            let movedDuringDrag = false;
+            const autoSpeed = 32;
 
             function measureCarousel() {
-                const currentSlides = slides();
-                if (currentSlides.length < 2) {
+                const firstSlide = packageTrack.children[0];
+                if (!firstSlide) {
                     return;
                 }
 
-                slideWidth = currentSlides[0].getBoundingClientRect().width;
+                slideWidth = firstSlide.getBoundingClientRect().width;
                 const slideStyles = window.getComputedStyle(packageTrack);
                 gap = parseFloat(slideStyles.columnGap || slideStyles.gap || 0);
+                setWidth = originalSlides.length * (slideWidth + gap);
             }
 
-            function offsetFor(index) {
-                return index * (slideWidth + gap);
-            }
-
-            function setPosition(index, animate = true) {
+            function slideStep() {
                 if (!slideWidth) {
                     measureCarousel();
                 }
 
-                packageTrack.style.transition = animate ? 'transform 0.55s ease' : 'none';
-                packageTrack.style.transform = `translateX(-${offsetFor(index)}px)`;
+                return slideWidth + gap;
             }
 
-            function normalizeIndex() {
-                const lastOriginalIndex = originalSlides.length + cloneCount - 1;
-                if (currentIndex > lastOriginalIndex) {
-                    currentIndex = cloneCount;
-                    setPosition(currentIndex, false);
-                } else if (currentIndex < cloneCount) {
-                    currentIndex = originalSlides.length + cloneCount - 1;
-                    setPosition(currentIndex, false);
+            function normalizeOffset(value) {
+                if (!setWidth) {
+                    return value;
+                }
+
+                let nextValue = value;
+                while (nextValue <= -setWidth) {
+                    nextValue += setWidth;
+                }
+
+                while (nextValue > 0) {
+                    nextValue -= setWidth;
+                }
+
+                return nextValue;
+            }
+
+            function renderTrack() {
+                packageTrack.style.transform = `translateX(${offset}px)`;
+            }
+
+            function setOffset(value) {
+                offset = normalizeOffset(value);
+                renderTrack();
+            }
+
+            function stopNudgeAnimation() {
+                if (nudgeFrameId) {
+                    cancelAnimationFrame(nudgeFrameId);
+                    nudgeFrameId = null;
                 }
             }
 
-            function goToSlide(nextIndex) {
-                if (isAnimating) {
-                    return;
-                }
+            function animateNudge(distance) {
+                stopNudgeAnimation();
 
-                isAnimating = true;
-                currentIndex = nextIndex;
-                setPosition(currentIndex, true);
-            }
+                const startOffset = offset;
+                const targetOffset = normalizeOffset(startOffset + distance);
+                const duration = 450;
+                let startTime = null;
 
-            function restartAutoSlide() {
-                if (autoSlideId) {
-                    clearInterval(autoSlideId);
-                }
-
-                autoSlideId = setInterval(() => {
-                    if (!isDragging) {
-                        goToSlide(currentIndex + 1);
+                function stepAnimation(timestamp) {
+                    if (startTime === null) {
+                        startTime = timestamp;
                     }
-                }, 3500);
+
+                    const elapsed = timestamp - startTime;
+                    const progress = Math.min(elapsed / duration, 1);
+                    const eased = 1 - Math.pow(1 - progress, 3);
+                    const blendedOffset = startOffset + (distance * eased);
+
+                    setOffset(blendedOffset);
+
+                    if (progress < 1) {
+                        nudgeFrameId = requestAnimationFrame(stepAnimation);
+                    } else {
+                        offset = targetOffset;
+                        renderTrack();
+                        nudgeFrameId = null;
+                    }
+                }
+
+                nudgeFrameId = requestAnimationFrame(stepAnimation);
+            }
+
+            function moveNext() {
+                animateNudge(-slideStep());
+            }
+
+            function movePrev() {
+                animateNudge(slideStep());
+            }
+
+            function tick(timestamp) {
+                if (!lastFrameTime) {
+                    lastFrameTime = timestamp;
+                }
+
+                const deltaSeconds = (timestamp - lastFrameTime) / 1000;
+                lastFrameTime = timestamp;
+
+                if (!isDragging && !nudgeFrameId) {
+                    setOffset(offset - (autoSpeed * deltaSeconds));
+                }
+
+                animationFrameId = requestAnimationFrame(tick);
             }
 
             function handlePointerDown(clientX) {
                 isDragging = true;
                 dragStartX = clientX;
-                dragDeltaX = 0;
+                lastPointerX = clientX;
+                movedDuringDrag = false;
                 packageCarousel.classList.add('is-dragging');
-                packageTrack.style.transition = 'none';
+                stopNudgeAnimation();
             }
 
             function handlePointerMove(clientX) {
@@ -223,8 +275,13 @@ document.addEventListener('DOMContentLoaded', function () {
                     return;
                 }
 
-                dragDeltaX = clientX - dragStartX;
-                packageTrack.style.transform = `translateX(-${offsetFor(currentIndex) - dragDeltaX}px)`;
+                const deltaX = clientX - lastPointerX;
+                if (Math.abs(clientX - dragStartX) > 6) {
+                    movedDuringDrag = true;
+                }
+
+                lastPointerX = clientX;
+                setOffset(offset + deltaX);
             }
 
             function handlePointerUp() {
@@ -235,27 +292,22 @@ document.addEventListener('DOMContentLoaded', function () {
                 packageCarousel.classList.remove('is-dragging');
                 isDragging = false;
 
-                if (Math.abs(dragDeltaX) > Math.max(50, slideWidth * 0.18)) {
-                    goToSlide(dragDeltaX < 0 ? currentIndex + 1 : currentIndex - 1);
-                } else {
-                    setPosition(currentIndex, true);
+                const totalDrag = lastPointerX - dragStartX;
+                if (Math.abs(totalDrag) > Math.max(60, slideWidth * 0.2)) {
+                    if (totalDrag < 0) {
+                        moveNext();
+                    } else {
+                        movePrev();
+                    }
                 }
-
-                restartAutoSlide();
             }
 
-            packageTrack.addEventListener('transitionend', () => {
-                isAnimating = false;
-                normalizeIndex();
+            packagePrev.addEventListener('click', () => {
+                movePrev();
             });
 
-            packagePrev.addEventListener('click', () => {
-                goToSlide(currentIndex - 1);
-                restartAutoSlide();
-            });
             packageNext.addEventListener('click', () => {
-                goToSlide(currentIndex + 1);
-                restartAutoSlide();
+                moveNext();
             });
 
             packageWindow.addEventListener('mousedown', (event) => {
@@ -279,15 +331,22 @@ document.addEventListener('DOMContentLoaded', function () {
             }, { passive: true });
 
             packageWindow.addEventListener('touchend', handlePointerUp);
+            packageWindow.addEventListener('click', (event) => {
+                if (movedDuringDrag) {
+                    event.preventDefault();
+                    movedDuringDrag = false;
+                }
+            });
 
             window.addEventListener('resize', () => {
                 measureCarousel();
-                setPosition(currentIndex, false);
+                setOffset(offset);
             });
 
             measureCarousel();
-            setPosition(currentIndex, false);
-            restartAutoSlide();
+            setOffset(0);
+            packageTrack.style.transition = 'none';
+            animationFrameId = requestAnimationFrame(tick);
         }
     }
 });

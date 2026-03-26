@@ -148,9 +148,11 @@ document.addEventListener('DOMContentLoaded', function () {
             let animationFrameId = null;
             let nudgeFrameId = null;
             let isDragging = false;
+            let isHovering = false;
             let dragStartX = 0;
             let lastPointerX = 0;
             let movedDuringDrag = false;
+            let pressedLink = null;
             const autoSpeed = 32;
 
             function measureCarousel() {
@@ -254,18 +256,19 @@ document.addEventListener('DOMContentLoaded', function () {
                 const deltaSeconds = (timestamp - lastFrameTime) / 1000;
                 lastFrameTime = timestamp;
 
-                if (!isDragging && !nudgeFrameId) {
+                if (!isDragging && !nudgeFrameId && !isHovering) {
                     setOffset(offset - (autoSpeed * deltaSeconds));
                 }
 
                 animationFrameId = requestAnimationFrame(tick);
             }
 
-            function handlePointerDown(clientX) {
+            function handlePointerDown(clientX, target) {
                 isDragging = true;
                 dragStartX = clientX;
                 lastPointerX = clientX;
                 movedDuringDrag = false;
+                pressedLink = target ? target.closest('.package-slide') : null;
                 packageCarousel.classList.add('is-dragging');
                 stopNudgeAnimation();
             }
@@ -299,7 +302,11 @@ document.addEventListener('DOMContentLoaded', function () {
                     } else {
                         movePrev();
                     }
+                } else if (pressedLink) {
+                    window.location.href = pressedLink.href;
                 }
+
+                pressedLink = null;
             }
 
             packagePrev.addEventListener('click', () => {
@@ -311,8 +318,7 @@ document.addEventListener('DOMContentLoaded', function () {
             });
 
             packageWindow.addEventListener('mousedown', (event) => {
-                event.preventDefault();
-                handlePointerDown(event.clientX);
+                handlePointerDown(event.clientX, event.target);
             });
 
             window.addEventListener('mousemove', (event) => {
@@ -323,7 +329,7 @@ document.addEventListener('DOMContentLoaded', function () {
             packageWindow.addEventListener('mouseleave', handlePointerUp);
 
             packageWindow.addEventListener('touchstart', (event) => {
-                handlePointerDown(event.touches[0].clientX);
+                handlePointerDown(event.touches[0].clientX, event.target);
             }, { passive: true });
 
             packageWindow.addEventListener('touchmove', (event) => {
@@ -336,6 +342,18 @@ document.addEventListener('DOMContentLoaded', function () {
                     event.preventDefault();
                     movedDuringDrag = false;
                 }
+            });
+            packageCarousel.addEventListener('mouseenter', () => {
+                isHovering = true;
+            });
+            packageCarousel.addEventListener('mouseleave', () => {
+                isHovering = false;
+            });
+            packageCarousel.addEventListener('focusin', () => {
+                isHovering = true;
+            });
+            packageCarousel.addEventListener('focusout', () => {
+                isHovering = false;
             });
 
             window.addEventListener('resize', () => {

@@ -1,0 +1,233 @@
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    background: #f7f2eb;
+    color: #2f2a27;
+    font-family: 'Manrope', sans-serif;
+}
+
+a {
+    color: inherit;
+}
+
+.gallery-hero {
+    padding: 28px 24px 88px;
+    background:
+        radial-gradient(circle at top left, rgba(207, 181, 149, 0.22), transparent 35%),
+        linear-gradient(180deg, #fbf8f4 0%, #f2e9df 100%);
+}
+
+.gallery-nav {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-bottom: 70px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.gallery-nav a {
+    text-decoration: none;
+    color: #7a6552;
+}
+
+.gallery-nav a:hover {
+    color: #aa7d55;
+}
+
+.gallery-hero-inner,
+.gallery-intro,
+.gallery-masonry-wrap,
+.gallery-cta {
+    width: min(1180px, calc(100vw - 40px));
+    margin: 0 auto;
+}
+
+.eyebrow,
+.section-label {
+    margin: 0 0 14px;
+    color: #aa7d55;
+    font-size: 0.82rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+}
+
+.gallery-hero h1,
+.gallery-intro h2,
+.gallery-cta h2 {
+    margin: 0;
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    line-height: 0.96;
+    color: #47362a;
+}
+
+.gallery-hero h1 {
+    max-width: 760px;
+    font-size: clamp(3.2rem, 7vw, 6.4rem);
+}
+
+.hero-copy,
+.gallery-intro p,
+.intro-note p {
+    font-size: 1rem;
+    line-height: 1.8;
+    color: rgba(47, 42, 39, 0.82);
+}
+
+.hero-copy {
+    max-width: 620px;
+    margin: 28px 0 0;
+}
+
+.hero-actions {
+    display: flex;
+    gap: 18px;
+    align-items: center;
+    margin-top: 34px;
+}
+
+.hero-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 170px;
+    padding: 14px 26px;
+    border-radius: 999px;
+    background: #b77f4f;
+    color: white;
+    text-decoration: none;
+    font-size: 0.95rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.hero-button:hover {
+    background: #9d6940;
+    color: white;
+}
+
+.hero-link {
+    text-decoration: none;
+    font-size: 0.95rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #7a6552;
+}
+
+.gallery-intro {
+    display: grid;
+    grid-template-columns: minmax(0, 1.5fr) minmax(280px, 0.8fr);
+    gap: 38px;
+    align-items: end;
+    padding: 82px 0 28px;
+}
+
+.intro-note {
+    padding: 28px;
+    background: rgba(255, 255, 255, 0.56);
+    border: 1px solid rgba(170, 125, 85, 0.18);
+}
+
+.intro-note span {
+    display: block;
+    margin-bottom: 10px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    color: #7a6552;
+}
+
+.gallery-masonry-wrap {
+    padding: 14px 0 100px;
+}
+
+.gallery-masonry {
+    column-count: 2;
+    column-gap: 14px;
+}
+
+.gallery-item {
+    break-inside: avoid;
+    margin: 0 0 14px;
+    overflow: hidden;
+    background: #e4d9cb;
+}
+
+.gallery-item img {
+    width: 100%;
+    display: block;
+    object-fit: cover;
+}
+
+.gallery-item.tall img {
+    height: 740px;
+}
+
+.gallery-item.medium img {
+    height: 560px;
+}
+
+.gallery-item.short img {
+    height: 400px;
+}
+
+.gallery-cta {
+    padding: 0 0 90px;
+    text-align: center;
+}
+
+.gallery-cta h2 {
+    max-width: 760px;
+    margin: 0 auto 28px;
+    font-size: clamp(2.4rem, 5vw, 4rem);
+}
+
+@media (max-width: 900px) {
+    .gallery-nav {
+        flex-wrap: wrap;
+        gap: 14px 18px;
+        margin-bottom: 48px;
+    }
+
+    .gallery-intro {
+        grid-template-columns: 1fr;
+        padding-top: 64px;
+    }
+
+    .gallery-masonry {
+        column-count: 1;
+    }
+
+    .gallery-item.tall img,
+    .gallery-item.medium img,
+    .gallery-item.short img {
+        height: auto;
+    }
+}
+
+@media (max-width: 640px) {
+    .gallery-hero {
+        padding: 20px 16px 66px;
+    }
+
+    .gallery-hero-inner,
+    .gallery-intro,
+    .gallery-masonry-wrap,
+    .gallery-cta {
+        width: min(1180px, calc(100vw - 24px));
+    }
+
+    .hero-actions {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .hero-button {
+        width: 100%;
+    }
+}

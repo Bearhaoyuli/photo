@@ -439,24 +439,43 @@ h2.text-center.mb-5 {
 
 .portfolio-bottom { 
     text-align: center;
-    padding: 40px 20px;
-    background-color: #f4f4f4;
+    padding: 58px 20px 30px;
+    background: linear-gradient(180deg, #efe4d8 0%, #f4eee7 100%);
+}
+
+.portfolio-bottom-label {
+    margin: 0 0 12px;
+    color: #aa7d55;
+    font-size: 0.8rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+}
+
+.portfolio-bottom h2 {
+    margin: 0 0 24px;
+    font-family: 'Cormorant Garamond', serif;
+    color: #4d3d33;
+    font-size: clamp(2rem, 3.4vw, 3.2rem);
+    line-height: 1;
 }
 
 .portfolio-bottom .btn-custom { 
-    background-color: #8c7b6b;
-    color: white;
-    border: none;
-    padding: 12px 30px;
+    background: rgba(255, 255, 255, 0.45);
+    color: #6f5b49;
+    border: 1px solid rgba(170, 125, 85, 0.32);
+    padding: 13px 30px;
     font-size: 1rem;
-    font-weight: bold;
+    font-weight: 600;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
-    border-radius: 4px;
-    transition: background-color 0.3s;
+    border-radius: 999px;
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
 }
 
 .portfolio-bottom .btn-custom:hover {
-    background-color: #6d5d4e;
+    background-color: #b77f4f;
+    border-color: #b77f4f;
+    color: white;
 }
 
 .contact-preview {
@@ -536,15 +555,37 @@ h2.text-center.mb-5 {
     gap: 12px 22px;
 }
 
-.site-social-links a {
+.site-social-icon {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    min-width: 88px;
     color: #6f5b49;
     text-decoration: none;
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.2rem;
 }
 
-.site-social-links a:hover {
+.site-social-icon img,
+.site-social-icon i {
+    width: 28px;
+    height: 28px;
+    font-size: 28px;
+    display: block;
+}
+
+.site-social-icon span {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.site-social-icon:hover {
     color: #aa7d55;
+}
+
+.site-social-icon-muted {
+    opacity: 0.72;
 }
 
 @media (min-width: 992px) {

@@ -207,16 +207,37 @@ a {
     gap: 12px 22px;
 }
 
-.site-social-links a {
-    text-decoration: none;
+.site-social-icon {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    min-width: 88px;
     color: #6f5b49;
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.25rem;
-    letter-spacing: 0.06em;
+    text-decoration: none;
 }
 
-.site-social-links a:hover {
+.site-social-icon img,
+.site-social-icon i {
+    width: 28px;
+    height: 28px;
+    font-size: 28px;
+    display: block;
+}
+
+.site-social-icon span {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.site-social-icon:hover {
     color: #aa7d55;
+}
+
+.site-social-icon-muted {
+    opacity: 0.72;
 }
 
 @media (max-width: 900px) {

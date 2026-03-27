@@ -6,9 +6,8 @@
     <title>Pompear Photography</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href = "style/style.css?v=20260324-1">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href = "style/style.css?v=20260327-1">
     
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="img/favicon/favicon.ico">
@@ -26,7 +25,7 @@
             <a href="#about">About</a>
             <a href="#portfolio">Package</a>
             <a href="https://pomepearphoto.pic-time.com/client" target="_blank" rel="noopener noreferrer">Portfolio</a>
-            <a href="#contact">Contact</a>
+            <a href="contact.html">Contact</a>
         </div>
 
         <img src="./img/1.jpg" class="active" alt="Slide 1">
@@ -54,15 +53,6 @@
         <div class="text-overlay">Every click has a tale</div>
         <div class="text-overlay">Your moments, our lens</div>
 
-      
-        
-
-
-        <!-- <div class="pagination">
-            <span id="prev">❮</span>
-            <span id="current-slide">01</span> / <span id="total-slides">06</span>
-            <span id="next">❯</span>
-        </div> -->
 
         <div class="pagination d-flex justify-content-between align-items-center">
             <span id="prev" class="bi bi-chevron-left"></span>
@@ -80,10 +70,10 @@
             <a href="#home">Home</a>
             <a href="#about">About</a>
             <a href="#portfolio">Package</a>
-            <a href="#contact">Contact</a>
+            <a href="contact.html">Contact</a>
             <a href="https://pomepearphoto.pic-time.com/client">Portfolio</a>
-            <a href="pricing.html">Pricing</a>
-            <a href="#contact" class="inquiry-btn">Inquiry</a>
+            <!-- <a href="pricing.html">Pricing</a> -->
+            <!-- <a href="#contact" class="inquiry-btn">Inquiry</a> -->
         </div>
 
         <div class="about-inner container">
@@ -107,133 +97,124 @@
     </div>
 
 <!-- Portfolio Section -->
-    <div class="content" id="portfolio">
-    <div class="container">
-        <h2 class="text-center mb-5">Package</h2>
-        <div class="package-carousel" aria-label="Package slideshow">
-            <button class="package-arrow package-arrow-prev" type="button" aria-label="Previous package">
+<section class="content services-section" id="portfolio">
+    <div class="container services-container">
+        <h2 class="services-title">My Services</h2>
+
+        <div class="services-grid">
+            <a href="outdoor-family.html" class="service-card service-card-family">
+                <div class="service-image-frame tall">
+                    <img src="./img/family.jpg" alt="Family session">
+                    <div class="service-copy service-copy-overlay">
+                        <h3>Family</h3>
+                        <span>See Gallery</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="couple-session.html" class="service-card service-card-couple">
+                <div class="service-image-frame medium">
+                    <img src="./img/couple.jpg" alt="Couple session">
+                </div>
+                <div class="service-copy">
+                    <h3>Couple</h3>
+                    <span>See Gallery</span>
+                </div>
+            </a>
+
+            <a href="maternity-baby.html" class="service-card service-card-maternity">
+                <div class="service-copy service-copy-top">
+                    <h3>Maternity</h3>
+                    <span>See Gallery</span>
+                </div>
+                <div class="service-image-frame medium">
+                    <img src="./img/mater_baby.jpg" alt="Maternity session">
+                </div>
+            </a>
+        </div>
+    </div>
+</section>
+
+<section class="content sample-section">
+    <div class="container sample-container">
+        <p class="services-label">Sample</p>
+        <h2 class="services-title sample-title">Selected Frames</h2>
+
+        <div class="package-carousel" aria-label="Sample slideshow">
+            <button class="package-arrow package-arrow-prev" type="button" aria-label="Previous sample">
                 <span class="bi bi-chevron-left"></span>
             </button>
 
             <div class="package-carousel-window">
                 <div class="package-carousel-track">
-                    <a href="maternity-baby.html" class="package-slide card-link">
+                    <a href="outdoor-family.html" class="package-slide card-link">
                         <div class="package-image-frame">
-                            <img src="./img/mater_baby.jpg" alt="Maternity and baby session">
+                            <img src="./img/1.jpg" alt="Sample family photograph">
                         </div>
-                        <div class="package-caption">Maternity + baby</div>
                     </a>
                     <a href="couple-session.html" class="package-slide card-link">
                         <div class="package-image-frame">
-                            <img src="./img/couple.jpg" alt="Couple session">
+                            <img src="./img/2.jpg" alt="Sample couple photograph">
                         </div>
-                        <div class="package-caption">Couple</div>
-                    </a>
-                    <a href="outdoor-family.html" class="package-slide card-link">
-                        <div class="package-image-frame">
-                            <img src="./img/family.jpg" alt="Family session">
-                        </div>
-                        <div class="package-caption">Family</div>
                     </a>
                     <a href="maternity-baby.html" class="package-slide card-link">
                         <div class="package-image-frame">
-                            <img src="./img/mater_baby.jpg" alt="Maternity and baby session">
+                            <img src="./img/3.jpg" alt="Sample maternity photograph">
                         </div>
-                        <div class="package-caption">Newborn Story</div>
-                    </a>
-                    <a href="couple-session.html" class="package-slide card-link">
-                        <div class="package-image-frame">
-                            <img src="./img/couple.jpg" alt="Couple session">
-                        </div>
-                        <div class="package-caption">Engagement</div>
                     </a>
                     <a href="outdoor-family.html" class="package-slide card-link">
                         <div class="package-image-frame">
-                            <img src="./img/family.jpg" alt="Family session">
+                            <img src="./img/4.jpg" alt="Sample family photograph">
                         </div>
-                        <div class="package-caption">Extended Family</div>
+                    </a>
+                    <a href="couple-session.html" class="package-slide card-link">
+                        <div class="package-image-frame">
+                            <img src="./img/6.jpg" alt="Sample couple photograph">
+                        </div>
+                    </a>
+                    <a href="maternity-baby.html" class="package-slide card-link">
+                        <div class="package-image-frame">
+                            <img src="./img/mater_baby.jpg" alt="Sample maternity photograph">
+                        </div>
                     </a>
                 </div>
             </div>
 
-            <button class="package-arrow package-arrow-next" type="button" aria-label="Next package">
+            <button class="package-arrow package-arrow-next" type="button" aria-label="Next sample">
                 <span class="bi bi-chevron-right"></span>
             </button>
         </div>
     </div>
-    </div>
+</section>
 
-
-
-
-<!-- Contact Section -->
-<div class="content" id="contact">
-    <div class="container">
-        <h2 class="text-center mb-3">Contact me</h2>
-
-        <div class="wechat-header d-flex justify-content-center align-items-center mb-5">
-            <img src="https://cdn.jsdelivr.net/npm/bootstrap-icons/icons/wechat.svg" alt="WeChat" class="wechat-icon-header">
-            <div class="wechat-text-header">
-                <div class="wechat-label">WeChat ID</div>
-                <div class="wechat-id"><strong>PomePear</strong></div>
-            </div>
+<section class="content contact-preview" id="contact">
+    <div class="container contact-preview-inner">
+        <div class="contact-preview-copy">
+            <p class="contact-preview-label">Contact</p>
+            <h2>Ready to talk about your session?</h2>
+            <p>
+                Reach out for availability, package details, or to start planning a session that feels natural and true to you.
+            </p>
+            <a href="contact.html" class="btn btn-custom contact-preview-button">Contact Me</a>
         </div>
-
-        <div class="inquiry-grid">
-            <div class="inquiry-image">
-                <img src="./img/contact.jpg" alt="contact">
-            </div>
-            <div class="inquiry-content">
-                <form action="https://formspree.io/f/xzzpyynd" method="POST" class="contact-form">
-                    <div class="form-row two-cols">
-                        <div class="form-group col">
-                            <label for="name">Name *</label>
-                            <input type="text" name="name" id="name" class="form-control" required>
-                        </div>
-                        <div class="form-group col">
-                            <label for="email">Email *</label>
-                            <input type="email" name="email" id="email" class="form-control" required>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="session_type">What type of session are you looking for?</label>
-                        <input type="text" name="session_type" id="session_type" class="form-control" placeholder="e.g., Lifestyle Family, Newborn">
-                    </div>
-
-                    <div class="form-row two-cols">
-                        <div class="form-group col">
-                            <label for="phone">Phone</label>
-                            <input type="text" name="phone" id="phone" class="form-control">
-                        </div>
-                        <div class="form-group col">
-                            <label for="shoot_dates">Preferred dates</label>
-                            <input type="text" name="shoot_dates" id="shoot_dates" class="form-control">
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="location">Desired shoot location</label>
-                        <input type="text" name="location" id="location" class="form-control">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="message">Message *</label>
-                        <textarea name="message" id="message" class="form-control" rows="6" required></textarea>
-                    </div>
-
-                    <div class="form-actions">
-                        <button type="submit" class="btn btn-custom">Send Message</button>
-                    </div>
-                </form>
-            </div>
+        <div class="contact-preview-image">
+            <img src="./img/contact.jpg" alt="Lily with family">
         </div>
     </div>
-</div>
+</section>
 
 <div class="portfolio-bottom text-center">
     <a href="https://pomepearphoto.pic-time.com/client" class="btn btn-custom" target="_blank">View Full Portfolio</a>
 </div>
+
+<footer class="site-social-footer">
+    <p class="site-social-label">Elsewhere</p>
+    <div class="site-social-links">
+        <a href="https://pomepearphoto.pic-time.com/client" target="_blank" rel="noopener noreferrer">Portfolio</a>
+        <a href="contact.html">Contact</a>
+        <a href="pricing.html">Pricing</a>
+    </div>
+</footer>
 
 <div class="back-to-top" id="backToTop">
     <i class="bi bi-arrow-up"></i>

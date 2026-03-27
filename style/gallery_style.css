@@ -187,6 +187,38 @@ a {
     font-size: clamp(2.4rem, 5vw, 4rem);
 }
 
+.site-social-footer {
+    padding: 12px 20px 56px;
+    text-align: center;
+}
+
+.site-social-label {
+    margin: 0 0 12px;
+    color: #aa7d55;
+    font-size: 0.8rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+}
+
+.site-social-links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px 22px;
+}
+
+.site-social-links a {
+    text-decoration: none;
+    color: #6f5b49;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.25rem;
+    letter-spacing: 0.06em;
+}
+
+.site-social-links a:hover {
+    color: #aa7d55;
+}
+
 @media (max-width: 900px) {
     .gallery-nav {
         flex-wrap: wrap;

@@ -2,7 +2,7 @@
 body, html {
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
+    font-family: 'Manrope', sans-serif;
     overflow-x: hidden;
     scroll-behavior: smooth; 
 }
@@ -38,8 +38,9 @@ body, html {
     padding: 0 20px;
     transition: opacity 1s ease-in-out;
     opacity: 0;
-    font-family: 'Caveat', cursive;
-    font-weight: 10;
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    line-height: 0.96;
 }
 
 .hero .text-overlay.active {
@@ -48,12 +49,13 @@ body, html {
 
 
 .nav {
-    font-family: 'Georgia', serif; /* Matches the page's elegant aesthetic */
-    font-size: 1rem;
-    text-transform: uppercase; /* Consistent with a professional look */
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
     display: flex;
     justify-content: center;
-    gap: 20px; /* Evenly space out links */
+    gap: 20px;
     padding: 10px 0;
 }
 
@@ -87,12 +89,13 @@ body, html {
     top: 0;
     left: 0;
     width: 100%;
-    background-color: rgba(140, 123, 107, 0.9); /* Semi-transparent matching the theme */
+    background-color: rgba(140, 123, 107, 0.58);
     color: white;
     z-index: 100; /* Ensure it stays above all other content */
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.3s, visibility 0.3s;
+    backdrop-filter: blur(6px);
 }
 
 .global-nav.show {
@@ -110,7 +113,7 @@ body, html {
 }
 
 .global-nav a:hover {
-    background-color: #6d5d4e; /* Darker shade for hover */
+    background-color: rgba(109, 93, 78, 0.42);
     color: white;
     text-decoration: none;
 }
@@ -125,12 +128,12 @@ body, html {
 
 .inquiry-btn {
     margin-left: auto;
-    background-color: #8c7b6b;
+    background-color: rgba(140, 123, 107, 0.65);
     color: white;
     padding: 10px 24px;
     border-radius: 4px;
     text-decoration: none;
-    font-family: 'Georgia', serif;
+    font-family: 'Cormorant Garamond', serif;
     font-size: 1rem;
     text-transform: uppercase;
     font-weight: bold;
@@ -139,7 +142,7 @@ body, html {
 }
 
 .inquiry-btn:hover {
-    background-color: #6d5d4e;
+    background-color: rgba(109, 93, 78, 0.58);
     color: white;
     text-decoration: none;
 }
@@ -342,7 +345,7 @@ body, html {
 }
 
 h2.text-center.mb-5 {
-    font-family: 'Georgia', serif;
+    font-family: 'Cormorant Garamond', serif;
     color: #8c7b6b;
     font-size: 2.5rem;
     margin-bottom: 40px;
@@ -362,36 +365,6 @@ h2.text-center.mb-5 {
 #contact h2 {
     color: #8c7b6b;
     margin-bottom: 15px;
-}
-
-.wechat-header {
-    gap: 16px;
-    padding: 20px 28px;
-    background: transparent;
-    border-radius: 6px;
-    box-shadow: none;
-    width: fit-content;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.wechat-icon-header {
-    width: 56px;
-    height: 56px;
-    flex-shrink: 0;
-}
-
-.wechat-text-header .wechat-label {
-    font-size: 0.8rem;
-    letter-spacing: 1px;
-    color: #8c7b6b;
-    opacity: 0.8;
-}
-
-.wechat-text-header .wechat-id {
-    font-size: 1.1rem;
-    color: #333;
-    font-weight: 600;
 }
 
 .inquiry-grid {
@@ -486,6 +459,94 @@ h2.text-center.mb-5 {
     background-color: #6d5d4e;
 }
 
+.contact-preview {
+    padding: 84px 20px;
+    background: linear-gradient(180deg, #f8f3ed 0%, #efe4d8 100%);
+}
+
+.contact-preview-inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(320px, 0.95fr);
+    gap: 40px;
+    align-items: center;
+    text-align: left;
+}
+
+.contact-preview-copy h2 {
+    margin: 0 0 18px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.4rem, 4.5vw, 4.1rem);
+    color: #47362a;
+    line-height: 0.98;
+}
+
+.contact-preview-label {
+    margin: 0 0 14px;
+    color: #aa7d55;
+    font-size: 0.82rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+}
+
+.contact-preview-copy p {
+    max-width: 620px;
+    margin: 0 0 22px;
+    color: rgba(47, 42, 39, 0.82);
+    line-height: 1.8;
+}
+
+.contact-preview-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 200px;
+    border-radius: 999px;
+    background-color: #b77f4f;
+}
+
+.contact-preview-button:hover {
+    background-color: #9d6940;
+}
+
+.contact-preview-image img {
+    width: 100%;
+    display: block;
+    object-fit: cover;
+    box-shadow: 0 18px 38px rgba(71, 54, 42, 0.12);
+}
+
+.site-social-footer {
+    padding: 28px 20px 54px;
+    text-align: center;
+    background: #f4eee7;
+}
+
+.site-social-label {
+    margin: 0 0 12px;
+    color: #aa7d55;
+    font-size: 0.8rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+}
+
+.site-social-links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px 22px;
+}
+
+.site-social-links a {
+    color: #6f5b49;
+    text-decoration: none;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+}
+
+.site-social-links a:hover {
+    color: #aa7d55;
+}
+
 @media (min-width: 992px) {
     .inquiry-grid { 
         grid-template-columns: 520px 1fr; 
@@ -503,22 +564,124 @@ h2.text-center.mb-5 {
     }
 }
 
-/* Custom CSS for Portfolio Section */
-#portfolio h2 {
-    margin: 10px 0 20px 0; /* Reduce top and bottom margin */
-    text-align: center;    /* Ensure proper alignment */
-}
-
+/* Services Section */
 #portfolio {
     margin: 0;
-    padding: 30px 0 10px;
-    background: linear-gradient(180deg, #f8f5f1 0%, #f3eee7 100%);
+    padding: 88px 0 40px;
+    background: linear-gradient(180deg, #fbf8f4 0%, #f2e9df 100%);
 }
 
-#portfolio .container {
-    padding-top: 10px; /* Remove excess padding at the top */
-    padding-bottom: 40px; /* Optional: Adjust bottom padding */
-    max-width: 1320px;
+.services-container {
+    max-width: 1380px;
+}
+
+.services-title {
+    margin: 0 0 72px;
+    text-align: center;
+    font-family: 'Cormorant Garamond', serif;
+    color: #54504d;
+    font-size: clamp(2.8rem, 4.8vw, 4.8rem);
+    line-height: 0.98;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.18fr) minmax(260px, 0.62fr) minmax(260px, 0.62fr);
+    gap: 40px;
+    align-items: start;
+}
+
+.service-card {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+
+.service-card-family {
+    padding-top: 10px;
+}
+
+.service-card-couple {
+    padding-top: 98px;
+}
+
+.service-card-maternity {
+    padding-top: 228px;
+}
+
+.service-image-frame {
+    position: relative;
+    overflow: hidden;
+    background: #e4d9cb;
+}
+
+.service-image-frame img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    transition: transform 0.45s ease;
+}
+
+.service-card:hover .service-image-frame img {
+    transform: scale(1.03);
+}
+
+.service-image-frame.tall {
+    height: 814px;
+}
+
+.service-image-frame.medium {
+    height: 430px;
+}
+
+.service-copy {
+    padding-top: 24px;
+    text-align: center;
+}
+
+.service-copy-top {
+    padding-top: 0;
+    padding-bottom: 28px;
+}
+
+.service-copy-overlay {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 26px;
+    padding-top: 0;
+    z-index: 1;
+}
+
+.service-copy h3 {
+    margin: 0 0 8px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.4rem, 3vw, 3.5rem);
+    font-weight: 500;
+    color: #75706a;
+}
+
+.service-copy span {
+    font-size: 0.78rem;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: #8d7866;
+}
+
+.service-copy-overlay h3,
+.service-copy-overlay span {
+    color: #fff7ef;
+    text-shadow: 0 1px 10px rgba(47, 42, 39, 0.26);
+}
+
+.sample-section {
+    padding: 24px 0 78px;
+    background: linear-gradient(180deg, #f2e9df 0%, #efe4d8 100%);
+}
+
+.sample-title {
+    margin-bottom: 36px;
 }
 
 .package-carousel {
@@ -526,13 +689,12 @@ h2.text-center.mb-5 {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 10px;
     width: 100%;
     margin: 0 auto;
 }
 
 .package-carousel-window {
-    width: min(1140px, calc(100vw - 160px));
+    width: min(1140px, calc(100vw - 120px));
     overflow: hidden;
     touch-action: pan-y;
 }
@@ -540,13 +702,12 @@ h2.text-center.mb-5 {
 .package-carousel-track {
     display: flex;
     align-items: flex-start;
-    gap: 12px;
-    transition: transform 0.55s ease;
+    gap: 14px;
     will-change: transform;
 }
 
 .package-slide {
-    flex: 0 0 calc((100% - 36px) / 4);
+    flex: 0 0 calc((100% - 42px) / 4);
     display: block;
     text-decoration: none;
     color: inherit;
@@ -568,17 +729,7 @@ h2.text-center.mb-5 {
 }
 
 .package-slide:hover .package-image-frame img {
-    transform: scale(1.04);
-}
-
-.package-caption {
-    padding-top: 16px;
-    text-align: center;
-    font-family: 'Georgia', serif;
-    font-size: 1.05rem;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: #6d5d4e;
+    transform: scale(1.03);
 }
 
 .package-arrow {
@@ -588,7 +739,7 @@ h2.text-center.mb-5 {
     width: 46px;
     height: 46px;
     border: 1px solid rgba(255, 255, 255, 0.9);
-    background: rgba(172, 138, 97, 0.35);
+    background: rgba(172, 138, 97, 0.38);
     color: white;
     display: flex;
     align-items: center;
@@ -596,7 +747,7 @@ h2.text-center.mb-5 {
     font-size: 1.4rem;
     z-index: 2;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease;
+    transition: background-color 0.3s ease;
     backdrop-filter: blur(3px);
 }
 
@@ -612,21 +763,39 @@ h2.text-center.mb-5 {
     right: max(10px, calc(50% - 590px));
 }
 
-.package-carousel.is-dragging .package-carousel-track {
-    transition: none;
-}
-
 .package-carousel.is-dragging .package-slide {
     pointer-events: none;
 }
 
 @media (max-width: 1100px) {
+    .services-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+    }
+
+    .service-card-family {
+        grid-column: 1 / -1;
+        max-width: 620px;
+        margin: 0 auto;
+        padding-top: 0;
+    }
+
+    .service-card-couple,
+    .service-card-maternity {
+        padding-top: 0;
+    }
+
+    .service-copy-top {
+        padding-top: 24px;
+        padding-bottom: 0;
+    }
+
     .package-carousel-window {
-        width: calc(100vw - 90px);
+        width: calc(100vw - 84px);
     }
 
     .package-slide {
-        flex-basis: calc((100% - 24px) / 3);
+        flex-basis: calc((100% - 28px) / 3);
     }
 
     .package-arrow-prev {
@@ -640,11 +809,32 @@ h2.text-center.mb-5 {
 
 @media (max-width: 768px) {
     #portfolio {
-        padding: 20px 0 0;
+        padding: 66px 0 24px;
     }
 
-    .package-carousel {
-        gap: 0;
+    .services-title {
+        margin-bottom: 34px;
+    }
+
+    .services-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .sample-section {
+        padding: 10px 0 56px;
+    }
+
+    .service-card-family {
+        max-width: none;
+    }
+
+    .service-image-frame.tall,
+    .service-image-frame.medium {
+        height: auto;
+    }
+
+    .service-copy-overlay {
+        bottom: 18px;
     }
 
     .package-carousel-window {
@@ -652,21 +842,16 @@ h2.text-center.mb-5 {
     }
 
     .package-slide {
-        flex-basis: calc((100% - 12px) / 2);
+        flex-basis: calc((100% - 14px) / 2);
     }
 
     .package-image-frame {
         height: 360px;
     }
 
-    .package-caption {
-        font-size: 0.9rem;
-        padding-top: 12px;
-    }
-
-    .package-arrow {
-        width: 40px;
-        height: 40px;
+    .contact-preview-inner {
+        grid-template-columns: 1fr;
+        text-align: center;
     }
 }
 
@@ -761,12 +946,11 @@ h2.text-center.mb-5 {
     padding: 40px 20px;
 }
 .about-title {
-    font-family: 'Georgia', serif;
+    font-family: 'Cormorant Garamond', serif;
     font-size: 2.8rem;
     color: #8c7b6b;
     margin-bottom: 20px;
     text-align: left;
-    font-family: 'Poppins', sans-serif;
     font-weight: 600;
 }
 .about-text p {
@@ -778,8 +962,8 @@ h2.text-center.mb-5 {
     text-align: left;
 }
 .about-text {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 300;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 400;
 }
 .about-image {
     overflow: hidden;

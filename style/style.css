@@ -216,9 +216,10 @@ body, html {
         flex-wrap: nowrap;
         overflow-x: auto;
         scrollbar-width: none;
-        background: rgba(248, 243, 237, 0.82);
-        border: 1px solid rgba(166, 144, 123, 0.22);
-        backdrop-filter: none;
+        background: rgba(244, 237, 229, 0.28);
+        border: 1px solid rgba(255, 255, 255, 0.24);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 12px 28px rgba(31, 23, 18, 0.1);
     }
 
     .hero-nav::-webkit-scrollbar {
@@ -226,14 +227,14 @@ body, html {
     }
 
     .hero-nav a {
-        color: #7a6656;
+        color: white;
         white-space: nowrap;
         flex: 0 0 auto;
     }
 
     .hero-nav a:hover {
-        color: #5f4c3d;
-        border-bottom-color: rgba(120, 100, 83, 0.45);
+        color: rgba(255, 255, 255, 0.88);
+        border-bottom-color: rgba(255, 255, 255, 0.75);
     }
 
     .pagination {
@@ -280,7 +281,7 @@ body, html {
         width: calc(100% - 20px);
         gap: 12px;
         padding: 9px 12px;
-        justify-content: flex-start;
+        justify-content: center;
     }
 
     .hero-nav a {
@@ -807,7 +808,7 @@ h2.text-center.mb-5 {
 }
 
 .package-carousel-window {
-    width: min(1220px, calc(100vw - 96px));
+    width: min(1320px, calc(100vw - 80px));
     overflow: hidden;
     touch-action: pan-y;
 }
@@ -820,7 +821,7 @@ h2.text-center.mb-5 {
 }
 
 .package-slide {
-    flex: 0 0 calc((100% - 42px) / 4);
+    flex: 0 0 calc((100% - 56px) / 5);
     display: block;
     text-decoration: none;
     color: inherit;
@@ -828,7 +829,7 @@ h2.text-center.mb-5 {
 
 .package-image-frame {
     position: relative;
-    height: 570px;
+    height: 500px;
     overflow: hidden;
     background: #dfd5c8;
 }
@@ -1048,6 +1049,8 @@ h2.text-center.mb-5 {
 /* About section styles (two-column layout similar to provided design) */
 .about-section {
     text-align: left;
+    background: linear-gradient(180deg, #f8f3ed 0%, #f3ece4 100%);
+    color: #3d342d;
 }
 .about-inner {
     display: grid;

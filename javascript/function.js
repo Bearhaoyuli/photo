@@ -133,6 +133,9 @@ document.addEventListener('DOMContentLoaded', function () {
         const packageTrack = packageCarousel.querySelector('.package-carousel-track');
         const packagePrev = packageCarousel.querySelector('.package-arrow-prev');
         const packageNext = packageCarousel.querySelector('.package-arrow-next');
+        const sampleLightbox = document.getElementById('sampleLightbox');
+        const sampleLightboxImage = document.getElementById('sampleLightboxImage');
+        const sampleLightboxClose = document.getElementById('sampleLightboxClose');
         const originalSlides = Array.from(packageTrack.children);
 
         if (packageWindow && packageTrack && originalSlides.length > 1) {
@@ -149,11 +152,64 @@ document.addEventListener('DOMContentLoaded', function () {
             let nudgeFrameId = null;
             let isDragging = false;
             let isHovering = false;
+            let isLightboxOpen = false;
             let dragStartX = 0;
             let lastPointerX = 0;
             let movedDuringDrag = false;
-            let pressedLink = null;
+            let activeSlide = null;
+            let lightboxCloseTimer = null;
             const autoSpeed = 32;
+
+            function openLightbox(image) {
+                if (!sampleLightbox || !sampleLightboxImage || !image) {
+                    return;
+                }
+
+                if (lightboxCloseTimer) {
+                    clearTimeout(lightboxCloseTimer);
+                    lightboxCloseTimer = null;
+                }
+
+                sampleLightboxImage.src = image.currentSrc || image.src;
+                sampleLightboxImage.alt = image.alt;
+                sampleLightbox.hidden = false;
+                sampleLightbox.setAttribute('aria-hidden', 'false');
+                sampleLightbox.classList.remove('is-closing');
+                document.body.classList.add('lightbox-open');
+                isLightboxOpen = true;
+
+                requestAnimationFrame(() => {
+                    sampleLightbox.classList.add('is-visible');
+                });
+
+                if (sampleLightboxClose) {
+                    sampleLightboxClose.focus();
+                }
+            }
+
+            function closeLightbox() {
+                if (!sampleLightbox || !sampleLightboxImage) {
+                    return;
+                }
+
+                sampleLightbox.classList.remove('is-visible');
+                sampleLightbox.classList.add('is-closing');
+                document.body.classList.remove('lightbox-open');
+                isLightboxOpen = false;
+
+                if (lightboxCloseTimer) {
+                    clearTimeout(lightboxCloseTimer);
+                }
+
+                lightboxCloseTimer = window.setTimeout(() => {
+                    sampleLightbox.hidden = true;
+                    sampleLightbox.setAttribute('aria-hidden', 'true');
+                    sampleLightbox.classList.remove('is-closing');
+                    sampleLightboxImage.src = '';
+                    sampleLightboxImage.alt = '';
+                    lightboxCloseTimer = null;
+                }, 280);
+            }
 
             function measureCarousel() {
                 const firstSlide = packageTrack.children[0];
@@ -256,7 +312,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 const deltaSeconds = (timestamp - lastFrameTime) / 1000;
                 lastFrameTime = timestamp;
 
-                if (!isDragging && !nudgeFrameId && !isHovering) {
+                if (!isDragging && !nudgeFrameId && !isHovering && !isLightboxOpen) {
                     setOffset(offset - (autoSpeed * deltaSeconds));
                 }
 
@@ -268,7 +324,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 dragStartX = clientX;
                 lastPointerX = clientX;
                 movedDuringDrag = false;
-                pressedLink = target ? target.closest('.package-slide') : null;
+                activeSlide = target ? target.closest('.package-slide') : null;
                 packageCarousel.classList.add('is-dragging');
                 stopNudgeAnimation();
             }
@@ -282,7 +338,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 if (Math.abs(clientX - dragStartX) > 6) {
                     movedDuringDrag = true;
                 }
-
                 lastPointerX = clientX;
                 setOffset(offset + deltaX);
             }
@@ -302,11 +357,12 @@ document.addEventListener('DOMContentLoaded', function () {
                     } else {
                         movePrev();
                     }
-                } else if (pressedLink) {
-                    window.location.href = pressedLink.href;
+                } else if (activeSlide && !movedDuringDrag) {
+                    const image = activeSlide.querySelector('img');
+                    openLightbox(image);
                 }
 
-                pressedLink = null;
+                activeSlide = null;
             }
 
             packagePrev.addEventListener('click', () => {
@@ -337,11 +393,19 @@ document.addEventListener('DOMContentLoaded', function () {
             }, { passive: true });
 
             packageWindow.addEventListener('touchend', handlePointerUp);
-            packageWindow.addEventListener('click', (event) => {
-                if (movedDuringDrag) {
-                    event.preventDefault();
-                    movedDuringDrag = false;
+            packageTrack.addEventListener('keydown', (event) => {
+                if (event.key !== 'Enter' && event.key !== ' ') {
+                    return;
                 }
+
+                const slide = event.target.closest('.package-slide');
+                if (!slide) {
+                    return;
+                }
+
+                event.preventDefault();
+                const image = slide.querySelector('img');
+                openLightbox(image);
             });
             packageCarousel.addEventListener('mouseenter', () => {
                 isHovering = true;
@@ -359,6 +423,24 @@ document.addEventListener('DOMContentLoaded', function () {
             window.addEventListener('resize', () => {
                 measureCarousel();
                 setOffset(offset);
+            });
+
+            if (sampleLightboxClose) {
+                sampleLightboxClose.addEventListener('click', closeLightbox);
+            }
+
+            if (sampleLightbox) {
+                sampleLightbox.addEventListener('click', (event) => {
+                    if (event.target === sampleLightbox) {
+                        closeLightbox();
+                    }
+                });
+            }
+
+            document.addEventListener('keydown', (event) => {
+                if (event.key === 'Escape' && isLightboxOpen) {
+                    closeLightbox();
+                }
             });
 
             measureCarousel();

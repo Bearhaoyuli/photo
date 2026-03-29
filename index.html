@@ -3,11 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pompear Photography</title>
+    <title>PomePearPhoto | New Jersey Documentary Family Photographer</title>
+    <meta name="description" content="PomePearPhoto is a New Jersey documentary family photography studio creating honest, unposed family, couple, and maternity images.">
+    <meta name="author" content="PomePearPhoto">
+    <meta property="og:title" content="PomePearPhoto | New Jersey Documentary Family Photographer">
+    <meta property="og:description" content="Honest, unposed family, couple, and maternity photography in New Jersey.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://pomepearphoto.com/">
+    <meta property="og:image" content="https://pomepearphoto.com/img/about.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="PomePearPhoto | New Jersey Documentary Family Photographer">
+    <meta name="twitter:description" content="Honest, unposed family, couple, and maternity photography in New Jersey.">
+    <meta name="twitter:image" content="https://pomepearphoto.com/img/about.jpg">
+    <link rel="canonical" href="https://pomepearphoto.com/">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href = "style/style.css?v=20260327-1">
+    <link rel="stylesheet" href = "style/style.css?v=20260328-3">
     
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="img/favicon/favicon.ico">
@@ -145,36 +157,36 @@
 
             <div class="package-carousel-window">
                 <div class="package-carousel-track">
-                    <a href="outdoor-family.html" class="package-slide card-link">
+                    <button class="package-slide" type="button" aria-label="Expand sample family photograph">
                         <div class="package-image-frame">
                             <img src="./img/1.jpg" alt="Sample family photograph">
                         </div>
-                    </a>
-                    <a href="couple-session.html" class="package-slide card-link">
+                    </button>
+                    <button class="package-slide" type="button" aria-label="Expand sample couple photograph">
                         <div class="package-image-frame">
                             <img src="./img/2.jpg" alt="Sample couple photograph">
                         </div>
-                    </a>
-                    <a href="maternity-baby.html" class="package-slide card-link">
+                    </button>
+                    <button class="package-slide" type="button" aria-label="Expand sample maternity photograph">
                         <div class="package-image-frame">
                             <img src="./img/3.jpg" alt="Sample maternity photograph">
                         </div>
-                    </a>
-                    <a href="outdoor-family.html" class="package-slide card-link">
+                    </button>
+                    <button class="package-slide" type="button" aria-label="Expand sample family photograph">
                         <div class="package-image-frame">
                             <img src="./img/4.jpg" alt="Sample family photograph">
                         </div>
-                    </a>
-                    <a href="couple-session.html" class="package-slide card-link">
+                    </button>
+                    <button class="package-slide" type="button" aria-label="Expand sample couple photograph">
                         <div class="package-image-frame">
                             <img src="./img/6.jpg" alt="Sample couple photograph">
                         </div>
-                    </a>
-                    <a href="maternity-baby.html" class="package-slide card-link">
+                    </button>
+                    <button class="package-slide" type="button" aria-label="Expand sample maternity photograph">
                         <div class="package-image-frame">
                             <img src="./img/mater_baby.jpg" alt="Sample maternity photograph">
                         </div>
-                    </a>
+                    </button>
                 </div>
             </div>
 
@@ -225,9 +237,18 @@
     <i class="bi bi-arrow-up"></i>
 </div>
 
-   
+<div class="sample-lightbox" id="sampleLightbox" hidden aria-hidden="true">
+    <div class="sample-lightbox-dialog" role="dialog" aria-modal="true" aria-label="Expanded sample image">
+        <button class="sample-lightbox-close" id="sampleLightboxClose" type="button" aria-label="Close expanded image">
+            <span class="bi bi-x-lg"></span>
+        </button>
+        <img class="sample-lightbox-image" id="sampleLightboxImage" src="" alt="">
+    </div>
+</div>
+
+ 
     
-    <script src="./javascript/function.js?v=20260325-1"></script>
+    <script src="./javascript/function.js?v=20260328-3"></script>
 
 </body>
 </html>

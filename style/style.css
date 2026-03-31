@@ -59,6 +59,50 @@ body, html {
     padding: 12px 0;
 }
 
+.nav-dropdown {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+}
+
+.nav-dropdown-menu {
+    position: absolute;
+    top: calc(100% + 14px);
+    left: 50%;
+    min-width: 220px;
+    padding: 14px 18px;
+    display: grid;
+    gap: 10px;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateX(-50%) translateY(10px);
+    transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s ease;
+    border-radius: 18px;
+    z-index: 30;
+}
+
+.nav-dropdown-menu::before {
+    content: "";
+    position: absolute;
+    top: -14px;
+    left: 0;
+    width: 100%;
+    height: 14px;
+}
+
+.nav-dropdown:hover .nav-dropdown-menu,
+.nav-dropdown:focus-within .nav-dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateX(-50%) translateY(0);
+}
+
+.nav-dropdown-menu a {
+    border-bottom: none !important;
+}
+
 /* Hero Navigation (specific to hero section) */
 .hero-nav {
     position: absolute;
@@ -86,6 +130,22 @@ body, html {
 .hero-nav a:hover {
     color: rgba(255, 255, 255, 0.88);
     border-bottom-color: rgba(255, 255, 255, 0.75);
+}
+
+.hero-nav .nav-dropdown-menu {
+    background: rgba(250, 244, 238, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.34);
+    box-shadow: 0 18px 36px rgba(31, 23, 18, 0.16);
+    backdrop-filter: blur(12px);
+}
+
+.hero-nav .nav-dropdown-menu a {
+    color: #7a6552;
+    padding: 0;
+}
+
+.hero-nav .nav-dropdown-menu a:hover {
+    color: #aa7d55;
 }
 
 /* Global Navigation (for other sections) */
@@ -124,6 +184,22 @@ body, html {
     color: #5f4c3d;
     border-bottom-color: rgba(120, 100, 83, 0.45);
     text-decoration: none;
+}
+
+.global-nav .nav-dropdown-menu {
+    background: rgba(251, 247, 242, 0.97);
+    border: 1px solid rgba(170, 125, 85, 0.16);
+    box-shadow: 0 18px 40px rgba(41, 31, 22, 0.1);
+}
+
+.global-nav .nav-dropdown-menu a {
+    color: #786453;
+    font-weight: 600;
+    padding: 0;
+}
+
+.global-nav .nav-dropdown-menu a:hover {
+    color: #5f4c3d;
 }
 
 /* Global nav is a flex container to position inquiry button to the right */
@@ -232,6 +308,16 @@ body, html {
         flex: 0 0 auto;
     }
 
+    .hero-nav .nav-dropdown-menu {
+        left: 0;
+        transform: translateX(0) translateY(10px);
+    }
+
+    .hero-nav .nav-dropdown:hover .nav-dropdown-menu,
+    .hero-nav .nav-dropdown:focus-within .nav-dropdown-menu {
+        transform: translateX(0) translateY(0);
+    }
+
     .hero-nav a:hover {
         color: rgba(255, 255, 255, 0.88);
         border-bottom-color: rgba(255, 255, 255, 0.75);
@@ -267,6 +353,16 @@ body, html {
 
     .global-nav::-webkit-scrollbar {
         display: none;
+    }
+
+    .global-nav .nav-dropdown-menu {
+        left: 0;
+        transform: translateX(0) translateY(10px);
+    }
+
+    .global-nav .nav-dropdown:hover .nav-dropdown-menu,
+    .global-nav .nav-dropdown:focus-within .nav-dropdown-menu {
+        transform: translateX(0) translateY(0);
     }
 }
 

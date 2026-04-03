@@ -282,6 +282,14 @@ a {
     color: #aa7d55;
 }
 
+.site-social-icon-static {
+    cursor: default;
+}
+
+.site-social-icon-static:hover {
+    color: #6f5b49;
+}
+
 .site-social-icon-muted {
     opacity: 0.72;
 }

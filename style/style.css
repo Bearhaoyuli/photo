@@ -261,15 +261,34 @@ body, html {
 }
 
 .pagination span {
-    font-size: 2rem; /* Adjust the arrow size */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 58px;
+    height: 58px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.38);
+    background: rgba(244, 237, 229, 0.16);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 14px 30px rgba(31, 23, 18, 0.14);
+    font-size: 1.15rem; /* Adjust size of the arrows */
     color: white;
     cursor: pointer;
     pointer-events: all; /* Enable pointer events on the arrows */
-    transition: color 0.3s;
+    transition: transform 0.25s ease, background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease;
 }
 
 .pagination span:hover {
-    color: #ddd; /* Change color on hover */
+    color: #fff7ef;
+    background: rgba(183, 127, 79, 0.3);
+    border-color: rgba(255, 255, 255, 0.54);
+    transform: scale(1.04);
+}
+
+.pagination span:focus-visible,
+.scroll-arrow:focus-visible {
+    outline: 2px solid rgba(255, 247, 239, 0.92);
+    outline-offset: 4px;
 }
 
 /* Scrollable Content Section */
@@ -356,6 +375,18 @@ body, html {
         font-size: 0.9rem;
     }
 
+    .pagination span {
+        width: 50px;
+        height: 50px;
+        font-size: 1rem;
+    }
+
+    .scroll-arrow {
+        bottom: 18px;
+        width: 54px;
+        height: 70px;
+    }
+
     .global-nav {
         background-color: rgba(248, 243, 237, 0.88) !important;
         backdrop-filter: none;
@@ -430,6 +461,18 @@ body, html {
         bottom: 10px;
         right: 10px;
         font-size: 0.8rem;
+    }
+
+    .pagination span {
+        width: 44px;
+        height: 44px;
+        font-size: 0.92rem;
+    }
+
+    .scroll-arrow {
+        bottom: 14px;
+        width: 48px;
+        height: 62px;
     }
 
     .global-nav {
@@ -1223,35 +1266,50 @@ body.lightbox-open {
 
 .scroll-arrow {
     position: absolute;
-    bottom: 20px;
+    bottom: 26px;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: -5px; /* Reduce gap to overlap the arrows slightly */
+    justify-content: center;
+    width: 62px;
+    height: 78px;
+    gap: 0;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.34);
+    background: rgba(244, 237, 229, 0.14);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 14px 30px rgba(31, 23, 18, 0.14);
     cursor: pointer;
-    animation: bounce 2s infinite;
+    animation: arrowFloat 2.4s ease-in-out infinite;
     z-index: 10; /* Ensures it appears above other elements */
+    transition: transform 0.25s ease, background-color 0.25s ease, border-color 0.25s ease;
 }
 
 .scroll-arrow i {
-    font-size: 1.5rem; /* Adjust size of the arrows */
+    font-size: 1rem;
     color: white;
-    transition: color 0.3s;
-    line-height: 1; /* Ensures arrows are tightly packed */
+    transition: color 0.25s ease, transform 0.25s ease;
+    line-height: 0.82;
 }
 
 .scroll-arrow:hover i {
-    color: #ddd; /* Change arrow color on hover */
+    color: #fff7ef;
 }
 
-@keyframes bounce {
+.scroll-arrow:hover {
+    background: rgba(183, 127, 79, 0.28);
+    border-color: rgba(255, 255, 255, 0.52);
+    transform: translateX(-50%) translateY(-3px);
+}
+
+@keyframes arrowFloat {
     0%, 100% {
         transform: translate(-50%, 0);
     }
     50% {
-        transform: translate(-50%, 10px);
+        transform: translate(-50%, 7px);
     }
 }
 .back-to-top {

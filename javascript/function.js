@@ -1,14 +1,17 @@
 document.addEventListener('DOMContentLoaded', function () {
     // Hero section slideshow
-    const images = document.querySelectorAll('.hero img');
-    const texts = document.querySelectorAll('.hero .text-overlay');
-    const totalSlides = images.length;
+    const images = Array.from(document.querySelectorAll('.hero > img'));
+    const texts = Array.from(document.querySelectorAll('.hero .text-overlay'));
+    const totalSlides = Math.min(images.length, texts.length);
     let currentIndex = 0;
 
     function showSlide(index) {
         images.forEach((img, i) => {
-            img.classList.toggle('active', i === index);
-            texts[i].classList.toggle('active', i === index);
+            const isActive = i === index && i < totalSlides;
+            img.classList.toggle('active', isActive);
+            if (texts[i]) {
+                texts[i].classList.toggle('active', isActive);
+            }
         });
     }
 
@@ -21,14 +24,28 @@ document.addEventListener('DOMContentLoaded', function () {
     const nextButton = document.getElementById('next');
     if (nextButton) {
         nextButton.addEventListener('click', nextSlide);
+        nextButton.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                nextSlide();
+            }
+        });
     }
 
     // Optional: Previous button functionality
     const prevButton = document.getElementById('prev');
     if (prevButton) {
-        prevButton.addEventListener('click', () => {
+        const showPreviousSlide = () => {
             currentIndex = (currentIndex - 1 + totalSlides) % totalSlides; // Decrement and loop back to last slide
             showSlide(currentIndex);
+        };
+
+        prevButton.addEventListener('click', showPreviousSlide);
+        prevButton.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                showPreviousSlide();
+            }
         });
     }
     
@@ -38,11 +55,19 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
     const scrollArrow = document.getElementById('scrollArrow');
-    const targetSection = document.querySelector('#about'); // Section to scroll to
+    const targetSection = document.querySelector('#portfolio');
 
     if (scrollArrow && targetSection) {
-        scrollArrow.addEventListener('click', () => {
+        const scrollToTarget = () => {
             targetSection.scrollIntoView({ behavior: 'smooth' });
+        };
+
+        scrollArrow.addEventListener('click', scrollToTarget);
+        scrollArrow.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                scrollToTarget();
+            }
         });
     }
     
